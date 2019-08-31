@@ -4,6 +4,7 @@ import com.news.entity.TabEntity
 import com.news.service.NewsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -21,9 +22,9 @@ class NewsController {
         return newService.getNews()
     }
 
-//    @GetMapping(value = "/test/tag/hashValue")
-//    fun getTagHashValue(): String?{
-//        return newService.extractTab()
-//    }
+    @GetMapping(value = "/test/tab/{tabName}")
+    fun getTagHashValue(@PathVariable tabName:String): String?{
+        return newService.getTabPage(tabName)
+    }
 
 }
