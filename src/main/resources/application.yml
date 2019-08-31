@@ -1,2 +1,6 @@
 server:
   port: 8081
+news:
+  url: "https://news.google.com/?hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+
+

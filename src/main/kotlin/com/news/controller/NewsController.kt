@@ -1,5 +1,6 @@
 package com.news.controller
 
+import com.news.entity.TabEntity
 import com.news.service.NewsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,9 +14,16 @@ class NewsController {
     @Autowired
     lateinit var newService: NewsService
 
+
+
     @GetMapping(value = "/test")
     fun getNews(): String?{
         return newService.getNews()
     }
+
+//    @GetMapping(value = "/test/tag/hashValue")
+//    fun getTagHashValue(): String?{
+//        return newService.extractTab()
+//    }
 
 }
