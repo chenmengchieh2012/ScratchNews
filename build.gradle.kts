@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	kotlin("jvm") version "1.3.0"
 	kotlin("plugin.spring") version "1.3.0"
+	kotlin("plugin.jpa") version "1.3.0"
 }
 
 group = "com.news"
@@ -38,6 +39,29 @@ dependencies {
 	//redis + redisTemplate
 	implementation("org.springframework.data:spring-data-redis:2.1.8.RELEASE")
 	implementation("redis.clients:jedis:2.9.0")
+
+	//https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	//https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation("org.postgresql:postgresql")
+
+
+
+	//https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	implementation("org.hibernate:hibernate-core:5.4.2.Final")
+	//https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+	implementation("org.hibernate:hibernate-entitymanager:5.4.2.Final")
+
+	//https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	//implementation("org.springframework.data:spring-data-jpa:2.1.9.RELEASE")
+	//https://mvnrepository.com/artifact/org.springframework/spring-aspects
+	//implementation("org.springframework:spring-aspects:5.1.4.RELEASE")
+
+
+
+	//https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-kotlin
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
+
 
 }
 

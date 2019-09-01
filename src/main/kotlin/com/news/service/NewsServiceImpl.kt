@@ -1,5 +1,6 @@
 package com.news.service
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.news.entity.TabEntity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -20,6 +21,8 @@ class NewsServiceImpl : Logging,NewsService {
     @Autowired
     lateinit var redisService: RedisService
 
+
+
     private lateinit var rawNews: String
 
 
@@ -31,7 +34,7 @@ class NewsServiceImpl : Logging,NewsService {
     private lateinit var sport: TabEntity
     private lateinit var health: TabEntity
 
-    private val tabs = listOf("最新","國際","商業","科學與科技","娛樂","體育","健康")
+    private val tabs = listOf(/*"最新","國際","商業","科學與科技","娛樂","體育",*/"健康"/**/)
 
     private val newsGETparameter = "?hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
     private val newsHost: String = "https://news.google.com"
@@ -71,6 +74,7 @@ class NewsServiceImpl : Logging,NewsService {
             titles.add(it.html())
             logger.info("get: " + it.html())
         }
+
         logger.info(titles.toString())
         return titles
     }
@@ -94,7 +98,8 @@ class NewsServiceImpl : Logging,NewsService {
             lstOfReturnData.forEach{ it.join() }
         }
         logger.info(titlesmap.toString())
-        redisService.saveNews(titlesmap.toString())
+        val mapper = jacksonObjectMapper()
+        redisService.saveNews(mapper.writeValueAsString(titlesmap))
         return titlesmap
     }
 

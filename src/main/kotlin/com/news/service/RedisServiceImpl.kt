@@ -12,14 +12,14 @@ import java.util.*
 class RedisServiceImpl: Logging,RedisService {
 
     @Autowired
-    lateinit var redsiTemplate: RedisTemplate<String,String>
+    lateinit var redisTemplate: RedisTemplate<String,String>
 
     override
     fun saveNews(value: String) {
         val sdf = SimpleDateFormat("ddMMyyyyhh")
         val currentDate = sdf.format(Date())
         val redisKey = generateNewsKey(currentDate)
-        redsiTemplate.opsForValue().set(redisKey,value)
+        redisTemplate.opsForValue().set(redisKey,value)
         logger.info(redisKey)
     }
 
@@ -29,6 +29,13 @@ class RedisServiceImpl: Logging,RedisService {
         val date = Date(year,month,date,hour,0)
         val currentDate = sdf.format(date)
         val redisKey = generateNewsKey(currentDate)
-        return redsiTemplate.opsForValue().get(redisKey)
+        return redisTemplate.opsForValue().get(redisKey)
     }
+
+    override
+    fun getNews(date: String) : String?{
+        val redisKey = generateNewsKey(date)
+        return redisTemplate.opsForValue().get(redisKey)
+    }
+
 }
