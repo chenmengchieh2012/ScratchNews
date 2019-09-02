@@ -23,7 +23,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	//testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	//restTemplate
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -51,12 +51,6 @@ dependencies {
 	implementation("org.hibernate:hibernate-core:5.4.2.Final")
 	//https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 	implementation("org.hibernate:hibernate-entitymanager:5.4.2.Final")
-
-	//https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-	//implementation("org.springframework.data:spring-data-jpa:2.1.9.RELEASE")
-	//https://mvnrepository.com/artifact/org.springframework/spring-aspects
-	//implementation("org.springframework:spring-aspects:5.1.4.RELEASE")
-
 
 
 	//https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-kotlin

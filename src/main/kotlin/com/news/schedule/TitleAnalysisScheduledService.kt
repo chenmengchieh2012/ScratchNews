@@ -32,10 +32,11 @@ class TitleAnalysisScheduledService: Logging {
     lateinit var rawTitleRepository: RawTitleRepository
 
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(cron="0 0 * ? * *")
     fun analysisTopic() {
-        logger.info("=============== schedule Start ================")
+        logger.info("=============== schedule Analysis Start ================")
         runJiebaCut(Date())
+        logger.info("=============== schedule Analysis End ================")
     }
 
     fun runJiebaCut(date: Date){
@@ -60,6 +61,7 @@ class TitleAnalysisScheduledService: Logging {
                     tagEntry.value.forEach() {title ->
                         @Suppress("UNCHECKED_CAST")
                         val jiebaResult : List<String> = jiebaNativeService.runJieba(title) as List<String>
+                        logger.info(jiebaResult)
                         jiebaResult.forEach(){item ->
                             if(totalMap.containsKey(item)){
                                 totalMap.replace(item,totalMap.getValue(item)+1)
@@ -67,8 +69,8 @@ class TitleAnalysisScheduledService: Logging {
                                 totalMap.put(item,1)
                             }
                         }
-                        logger.info(totalMap.toString())
                     }
+                    logger.info(totalMap.toString())
                     val sdf = SimpleDateFormat("ddMMyyyyhh")
                     var cutTitle = CutTitle(
                             null,
@@ -87,6 +89,10 @@ class TitleAnalysisScheduledService: Logging {
                     )
                     rawTitleRepository.save(rawTitle)
                 }
+
+                val ret = redisService.deleteNews("$currentDate$hour")
+                logger.info(ret)
+
             }
         }
 

@@ -34,7 +34,7 @@ class NewsServiceImpl : Logging,NewsService {
     private lateinit var sport: TabEntity
     private lateinit var health: TabEntity
 
-    private val tabs = listOf(/*"最新","國際","商業","科學與科技","娛樂","體育",*/"健康"/**/)
+    private val tabs = listOf(/**/"最新","國際","商業","科學與科技","娛樂","體育","健康"/**/)
 
     private val newsGETparameter = "?hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
     private val newsHost: String = "https://news.google.com"
@@ -69,7 +69,7 @@ class NewsServiceImpl : Logging,NewsService {
 //        a.DY5T1d
         val doc = Jsoup.parse(rawNews)
         logger.info(rawNews.length)
-        var titles: MutableList<String> = mutableListOf<String>()
+        val titles: MutableList<String> = mutableListOf<String>()
         doc.select("a.DY5T1d").forEach {
             titles.add(it.html())
             logger.info("get: " + it.html())
@@ -81,7 +81,7 @@ class NewsServiceImpl : Logging,NewsService {
 
     override
     fun getTitles(): Map<String, List<String>> {
-        var titlesmap: MutableMap<String, List<String>> = mutableMapOf<String, List<String>>()
+        val titlesmap: MutableMap<String, List<String>> = mutableMapOf<String, List<String>>()
         runBlocking <Unit> {
             val lstOfReturnData = mutableListOf<Job>()
             val coroutinesScratch  = tabs.forEach { tab ->

@@ -38,4 +38,10 @@ class RedisServiceImpl: Logging,RedisService {
         return redisTemplate.opsForValue().get(redisKey)
     }
 
+    override
+    fun deleteNews(date: String) : Boolean{
+        val redisKey = generateNewsKey(date)
+        return redisTemplate.delete(redisKey)
+    }
+
 }
